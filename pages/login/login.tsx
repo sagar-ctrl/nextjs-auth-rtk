@@ -33,7 +33,7 @@ const Login = () => {
    if(isError)
    {
      
-     toast.error(error?.data?.error ?? "Something went Wrong");
+     toast.error("Something went Wrong");
    }
    if(isSuccess)
    {

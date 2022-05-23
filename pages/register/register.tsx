@@ -10,7 +10,7 @@ const Register = () => {
     useEffect(()=>{
         if(isError)
         {
-            toast.error(error?.error)
+            toast.error("some thing went wrong")
         }
 
         if(isSuccess)

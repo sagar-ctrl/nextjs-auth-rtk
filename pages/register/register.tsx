@@ -3,6 +3,7 @@ import {Flex,Grid,FormControl, VStack, FormLabel, Input, Button, Text} from "@ch
 import { useRegisterUserMutation } from '../../services/api/auth/authApi'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
+import CheckIfLoggedIn from '../../hoc/checkIfLoggedIn'
 const Register = () => {
     const [registerUser,{isError,isLoading,data,error,isSuccess}]=useRegisterUserMutation()
 
@@ -54,4 +55,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default CheckIfLoggedIn(Register);

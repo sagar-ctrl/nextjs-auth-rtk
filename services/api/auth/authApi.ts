@@ -34,9 +34,15 @@ const authApi=createApi({
                 method:"post",
                 body,
             })
+        }),
+        getAllUser:builder.query({
+            query:(id=1)=>({
+                url:`/api/users?page=${id}`,
+                method:"get"
+            })
         })
     })
 });
 
-export const {useLoginUserMutation,useRegisterUserMutation}=authApi
+export const {useLoginUserMutation,useRegisterUserMutation,useGetAllUserQuery}=authApi
 export default authApi

@@ -7,6 +7,7 @@ import { setToken } from '../../services/api/auth/authSlice';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import Link from 'next/link';
+import CheckIfLoggedIn from '../../hoc/checkIfLoggedIn';
 const Login = () => {
 
   const [loginUser,{isLoading,isError,data,error,isSuccess}]=useLoginUserMutation();
@@ -38,7 +39,7 @@ const Login = () => {
    {
      dispatch(setToken(data.token));
      toast.success("Login Success full")
-     navigate.push("/register");
+     navigate.push("/dashboard");
    }
    
 },[isError,data])
@@ -74,4 +75,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default CheckIfLoggedIn(Login);

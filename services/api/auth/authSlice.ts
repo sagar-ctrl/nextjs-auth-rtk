@@ -31,12 +31,15 @@ const authSlice=createSlice({
             state.total=action.payload.total_pages??20
             state.per_page=action.payload.per_page
             state.token=JSON.stringify(localStorage.getItem("token") ?? "{}");
+        },
+        logout(state:any,action:any){
+            localStorage.removeItem("token");
         }
 
     }
 
 });
 
-export const {setToken,setUserList}=authSlice.actions;
+export const {setToken,setUserList,logout}=authSlice.actions;
 export default authSlice.reducer
 

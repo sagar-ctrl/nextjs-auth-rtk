@@ -1,15 +1,18 @@
 import { Box, Button, Container, Flex,Grid,HStack,Text, VStack} from '@chakra-ui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../features/store/hooks';
 import WithAuth from '../../hoc';
 import { useGetAllUserQuery } from '../../services/api/auth/authApi';
-import { setUserList } from '../../services/api/auth/authSlice';
+import { setUserList,logout } from '../../services/api/auth/authSlice';
 
 const Dashboard = () => {
   const [pageNumber,setPage]=useState(1);
   const {isError,data,error,isSuccess}=useGetAllUserQuery(pageNumber)
   const dispatch=useAppDispatch();
+  const router=useRouter()
   const authApiState=useAppSelector((state)=>state.auth);
 
   useEffect(()=>{
@@ -30,6 +33,14 @@ const Dashboard = () => {
 
         <HStack maxW={"7xl"} minW="xl" p={8} bg="white" boxShadow={"2xl"} rounded={"xl"} m={4}>
           <Text>{authApiState.token? authApiState.token :"Text"}</Text>
+          <Button
+          onClick={()=>{
+            dispatch(logout);
+            router.replace("/login");
+          }}
+          variant={"outline"} size="sm" rounded={"xl"} >
+            Logout
+          </Button>
         </HStack>
       {authApiState && authApiState.userList?.map((item)=>{
          return <VStack border="2px" borderColor="orange.200" maxW={"7xl"} minW="xl" key={item.id} p={4} bg="white" boxShadow={"2xl"} rounded={"xl"} m={4}>

@@ -35,7 +35,7 @@ const Dashboard = () => {
           <Text>{authApiState.token? authApiState.token :"Text"}</Text>
           <Button
           onClick={()=>{
-            dispatch(logout);
+            dispatch(logout(""));
             router.replace("/login");
           }}
           variant={"outline"} size="sm" rounded={"xl"} >

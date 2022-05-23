@@ -33,7 +33,12 @@ const authSlice=createSlice({
             state.token=JSON.stringify(localStorage.getItem("token") ?? "{}");
         },
         logout(state:any,action:any){
-            localStorage.removeItem("token");
+            
+            if(typeof window !== "undefined")
+            {
+                console.log(localStorage.getItem("token"));
+                window.localStorage.clear();
+            }
         }
 
     }
